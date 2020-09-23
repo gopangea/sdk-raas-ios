@@ -13,8 +13,8 @@ import Foundation
 import Foundation
 public class Pangea {
     private static let TAG = "Pangea"
-    private (set) var debugInfo : Bool = false
-    private (set) var pangeaSessionID :String = ""
+    private var debugInfo : Bool = false
+    private var pangeaSessionID :String = ""
     public static let sharedInstance = Pangea()
     private (set) var api = "https:api.pangea-raas-integration.com/raas/v1/tokenization/card"
     
@@ -27,9 +27,13 @@ public class Pangea {
         self.pangeaSessionID=pangeaSessionID
     }
     
+    public func getSessionId() -> String{
+        return self.pangeaSessionID
+    }
+    
     
     public func updateSessionToken(newPangeaSessionID: String) {
-        pangeaSessionID = newPangeaSessionID
+        self.pangeaSessionID = newPangeaSessionID
         RiskifiedBeacon.updateSessionToken(newPangeaSessionID)
     }
     

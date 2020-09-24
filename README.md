@@ -1,4 +1,4 @@
-# sdk-raas-ios
+# SDK-RaaS-iOS
 
 **The following guide explains how to install and implement Pangea RaaS' Mobile SDK into your application environment.** 
 - Version number: 0.0.1

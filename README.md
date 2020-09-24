@@ -46,7 +46,7 @@ Pangea.sharedInstance.createSession( pangeaSessionID: "NumberSessionHere", debug
   - debugInfo - Boolean parameter that enables pangea logging for debugging.
 
   
-2. if you need to retrive the session from mPangea use the following function:
+2. if you need to retrive the session from Pangea instance use the following function:
 ```
 Pangea.sharedInstance.getSessionId()
 ```
@@ -55,7 +55,7 @@ Pangea.sharedInstance.getSessionId()
 ```
 Pangea.sharedInstance.updateSessionToken("newToken");
 ```
-4. Notify the beacon on each relevant HTTP request from the app:
+4. Notify to pangea on each relevant HTTP request from the app:
 ```
 Pangea.sharedInstance.logRequest("https://<request URL>");
 ```

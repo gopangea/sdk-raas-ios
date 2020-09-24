@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "10.0"
   #spec.source       = { :git => "http://EXAMPLE/RaaS_SDK.git", :tag => "#{spec.version}" }
   #spec.source       = { :path => '.' }
-  spec.source       = { :git => "URL", :tag => "0.0.1" }
+  spec.source       = { :git => "https://github.com/gopangea/sdk-raas-ios.git", :branch => 'dev'}
   spec.dependency 'RiskifiedBeacon', '1.2.7'
   spec.static_framework = true
   spec.source_files  = "RaaS_SDK/*.*"

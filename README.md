@@ -24,7 +24,7 @@ iOS 10.0 and above.
 **Using CocoaPods:**
   * Add the following line to the Podfile, under your app's target section:
 ```
-  	pod 'RaaS_SDK', :git => 'https://github.com/gopangea/sdk-raas-ios.git', :tag => 'Current Version Number for exaple: 0.0.1'
+  	pod 'RaaS_SDK', :git => 'https://github.com/gopangea/sdk-raas-ios.git', :tag => 'Version number'
 ```
   * Run $ pod install in your project directory.
   * Open App.xcworkspace and build.

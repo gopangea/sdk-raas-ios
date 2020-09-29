@@ -1,7 +1,7 @@
 # SDK-RaaS-iOS
 
 **The following guide explains how to install and implement Pangea RaaS' Mobile SDK into your application environment.** 
-- Version number: 0.0.1
+- Version number: 0.0.9
 
 ### Introduction
 
@@ -38,12 +38,13 @@ import RaaS_SDK
 ```
 2. Create the session at the end of applicationDidFinishLaunching:
 ```
-Pangea.sharedInstance.createSession( pangeaSessionID: "NumberSessionHere", debugInfo: true)
+Pangea.sharedInstance.createSession( pangeaSessionID: "NumberSessionHere", debugInfo: true, environment: .INTEGRATION)
 ```
 
 * createSession() arguments:
   - pangeaSessionID - Unique String identifier of the user's current session in the app. The same identifier is passed by your backend to Pangea.
   - debugInfo - Boolean parameter that enables pangea logging for debugging.
+  - environment - Use it to point to the desired environment, there are three: *PRODUCTION*, *DEV* and *INTEGRATION*
 
   
 2. if you need to retrive the session from Pangea instance use the following function:

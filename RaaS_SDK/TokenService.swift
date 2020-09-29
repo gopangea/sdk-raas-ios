@@ -17,9 +17,11 @@ import Foundation
 
 // Runs query data task only
 public class TokenService {
-    private let api :String
-    public init(api:String){
-        self.api = api
+    private let environment :Environment
+    private var debugInfo:Bool
+    public init(environment: Environment, debugInfo:Bool){
+        self.environment = environment
+        self.debugInfo = debugInfo
     }
     
     //MARK: - Constants
@@ -37,7 +39,7 @@ public class TokenService {
             completion(nil,"invalid Card Number: \(cardInfo.cardNumber)")
             return
         }
-
+        
         guard let encryptedCardNumber = RSAUtil.encrypt(string: cardInfo.cardNumber, publicKey: cardInfo.publicKey) else {
            completion(nil,"encryption for card number Failed")
            return
@@ -46,24 +48,26 @@ public class TokenService {
            completion(nil,"encryption for cvv Failed")
            return
         }
-
-        if let urlComponents = URLComponents(string: api) {
         
+        if let urlComponents = URLComponents(string: getApi(environment: environment)) {
+            
             guard let url = urlComponents.url else {
-                print("url malformed \(String(describing: urlComponents.url))")
+                if(debugInfo){
+                    print("url malformed \(String(describing: urlComponents.url))")
+                }
                 return
             }
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") //headers
             request.httpMethod = "POST"//verb
-
+            
             let body = ["requestId":getRequestId(),
                         "partnerIdentifier":cardInfo.partnerIdentifier,
                         "encryptedCardNumber":encryptedCardNumber,
                         "encryptedCvv":encryptedCvv]
             let bodyData = try? JSONSerialization.data(withJSONObject: body)
             request.httpBody = bodyData //adding data
-            
+            let debugInside = debugInfo
             dataTask = defaultSession.dataTask(with: request) { [weak self] data, response, error in
                 defer {
                     self?.dataTask = nil
@@ -76,7 +80,9 @@ public class TokenService {
                 } else if let data = data{
                     let respondMessage = String(decoding: data, as: UTF8.self)
                     let tokenResponse = TokenResponse(token:respondMessage)
-                    print(tokenResponse.token)
+                    if (debugInside) {
+                        print(tokenResponse.token)
+                    }
                     DispatchQueue.main.async {
                         completion(tokenResponse,nil)
                     }
@@ -88,6 +94,19 @@ public class TokenService {
     
     func cancel() {
         dataTask?.cancel()
+    }
+    
+    private func getApi(environment: Environment) ->String {
+        var api = "noUrlFound"
+        switch environment {
+        case .PRODUCTION:
+            api = "https://api.pangea-raas.com/raas/v1/tokenization/card"
+        case .DEV:
+            api = "https://api.pangea-raas-dev.com/raas/v1/tokenization/card"
+        case .INTEGRATION:
+            api = "https:api.pangea-raas-integration.com/raas/v1/tokenization/card"
+        }
+        return api
     }
     
     

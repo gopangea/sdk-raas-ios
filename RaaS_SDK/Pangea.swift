@@ -17,14 +17,16 @@ public class Pangea {
     private var pangeaSessionID :String = ""
     public static let sharedInstance = Pangea()
     private (set) var api = "https:api.pangea-raas-integration.com/raas/v1/tokenization/card"
+    private var environment:Environment = .DEV
     
     private init() {
     }
     
-    public func createSession(pangeaSessionID: String,debugInfo: Bool) {
+    public func createSession(pangeaSessionID: String,debugInfo: Bool, environment:Environment) {
         RiskifiedBeacon.start("gopangea.com", sessionToken:pangeaSessionID, debugInfo: debugInfo)
         self.debugInfo = debugInfo
         self.pangeaSessionID=pangeaSessionID
+        self.environment = environment
     }
     
     public func getSessionId() -> String{
@@ -46,7 +48,7 @@ public class Pangea {
     }
     
     public func createToken(cardInfo: CardInformation, completion: @escaping QueryResult) {
-        TokenService(api: api).createToken(cardInfo: cardInfo, completion: completion)
+        TokenService(environment: environment, debugInfo:debugInfo).createToken(cardInfo: cardInfo, completion: completion)
     }
     
     

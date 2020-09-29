@@ -43,3 +43,9 @@ internal func getRequestId() -> String{
     return requestId
 }
 public typealias QueryResult = (TokenResponse?, String?) -> Void
+
+public enum Environment: String {
+    case PRODUCTION
+    case DEV
+    case INTEGRATION
+}

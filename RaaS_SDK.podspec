@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "RaaS_SDK"
-  spec.version      = "0.0.9"
+  spec.version      = "1.0.1"
   spec.summary      = "Pangea RaaS for mitigate fraud and to securely collect debit card information for payment"
   spec.description  = <<-DESC
   The Pangea Remittance as a Service (RaaS) API allows any company to add remittances to their 
@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.license      = "Apache License 2.0"
   spec.author             = { "Pangea Money Transfer" => "carlos.hernandez@gopangea.com" }
   spec.platform     = :ios, "10.0"
-  spec.source       = { :git => "https://github.com/gopangea/sdk-raas-ios.git", :tag => "0.0.9"}
+  spec.source       = { :git => "https://github.com/gopangea/sdk-raas-ios.git", :tag => "1.0.1"}
   spec.dependency 'RiskifiedBeacon', '1.2.7'
   spec.static_framework = true
   spec.source_files  = "RaaS_SDK/*.*"

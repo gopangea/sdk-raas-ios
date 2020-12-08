@@ -57,8 +57,8 @@ public class TokenService {
                 }
                 return
             }
-            let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-            let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+            let versionNumber = getVersion()
+            let buildNumber = getBuild()
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") //headers
             request.setValue("iOS", forHTTPHeaderField: "DEVICE_APP")

@@ -49,3 +49,11 @@ public enum Environment: String {
     case DEV
     case INTEGRATION
 }
+
+internal func getVersion()->String{
+    return "1.0.2"
+}
+
+internal func getBuild()->String{
+    return "4"
+}

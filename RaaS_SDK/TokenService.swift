@@ -59,11 +59,10 @@ public class TokenService {
             }
             let versionNumber = getVersion()
             let buildNumber = getBuild()
+            let userAgent = "RaasSdk|iOS|Version=\(versionNumber)|Build=\(buildNumber)"
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") //headers
-            request.setValue("iOS", forHTTPHeaderField: "DEVICE_APP")
-            request.setValue("\(versionNumber)", forHTTPHeaderField: "VERSION_NUMBER")
-            request.setValue("\(buildNumber)", forHTTPHeaderField: "BUILD_NUMBER")
+            request.setValue(userAgent, forHTTPHeaderField: "x-pangea-user-agent")
             request.httpMethod = "POST"//verb
             
             let body = ["requestId":getRequestId(),

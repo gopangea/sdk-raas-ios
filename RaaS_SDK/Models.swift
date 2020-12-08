@@ -51,9 +51,9 @@ public enum Environment: String {
 }
 
 internal func getVersion()->String{
-    return "1.0.2"
+    return "1.0.3"
 }
 
 internal func getBuild()->String{
-    return "4"
+    return "5"
 }

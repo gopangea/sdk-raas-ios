@@ -57,8 +57,13 @@ public class TokenService {
                 }
                 return
             }
+            let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") //headers
+            request.setValue("iOS", forHTTPHeaderField: "DEVICE_APP")
+            request.setValue("\(versionNumber)", forHTTPHeaderField: "VERSION_NUMBER")
+            request.setValue("\(buildNumber)", forHTTPHeaderField: "BUILD_NUMBER")
             request.httpMethod = "POST"//verb
             
             let body = ["requestId":getRequestId(),
@@ -67,6 +72,12 @@ public class TokenService {
                         "encryptedCvv":encryptedCvv]
             let bodyData = try? JSONSerialization.data(withJSONObject: body)
             request.httpBody = bodyData //adding data
+            if(debugInfo){
+                print("\(request.httpMethod ?? "") \(String(describing: request.url) )")
+                        let str = String(decoding: request.httpBody!, as: UTF8.self)
+                        print("BODY \n \(str)")
+                print("HEADERS \n \(String(describing: request.allHTTPHeaderFields) )")
+            }
             let debugInside = debugInfo
             dataTask = defaultSession.dataTask(with: request) { [weak self] data, response, error in
                 defer {

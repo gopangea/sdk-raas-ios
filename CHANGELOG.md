@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.3] - 2020-12-08
 ### Added
-- A custom header x-pangea-user-agent that describes the version number, build number and OS system
+- A custom header x-pangea-user-agent that describes the version number, build number and OS 
 ### Changed
 - The debug mode now shows the body, url and headers from the Http request
+
+## [0.0.9] - 2020-09-29
+### Changed
+- Initial version of the SDK

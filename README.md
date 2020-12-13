@@ -111,6 +111,7 @@ Pangea.sharedInstance.createToken(cardInfo: card, completion: {tokenResponse,err
              guard let token = tokenResponse else { //invalid token }
         })
 ```
+### [Changelog](https://github.com/gopangea/sdk-raas-ios/blob/master/CHANGELOG.md)
 
 ### FAQs
 

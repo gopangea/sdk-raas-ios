@@ -42,4 +42,36 @@ internal class RSAUtil {
     }
 }
 
+extension String {
+    //"heroes".base64Encoded() // It will return: aGVyb2Vz
+    //"aGVyb2Vz".base64Decoded() // It will return: heroes
+    
+    func base64Encoded() -> String? {
+        return data(using: .utf8)?.base64EncodedString()
+    }
+    func base64Decoded() -> String? {
+        guard let data = Data(base64Encoded: self) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}
+
+internal func jsonToString(json: Any, isDebug: Bool) -> String?{
+    do {
+        // first of all convert json to the data
+        let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+        // the data will be converted to the string
+        let convertedString = String(data: data1, encoding: String.Encoding.utf8)
+        return convertedString
+    } catch let myJSONError {
+        if isDebug {
+            print(myJSONError)
+        }
+        return nil
+    }
+    
+}
+
+
+
+
  

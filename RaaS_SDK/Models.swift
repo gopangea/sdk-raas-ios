@@ -42,7 +42,8 @@ internal func getRequestId() -> String{
     let requestId = String(randomNumberString, radix: 11)
     return requestId
 }
-public typealias QueryResult = (TokenResponse?, String?) -> Void
+public typealias QueryResult<T> = (T?, String?) -> Void // this is for the client user
+internal typealias QueryData = (Data?, Error?) -> Void //this is just for the internal query to the network
 
 public enum Environment: String {
     case PRODUCTION
@@ -56,4 +57,14 @@ internal func getVersion()->String{
 
 internal func getBuild()->String{
     return "5"
+}
+
+internal struct MyError: Error {
+    let msg: String
+
+}
+extension MyError: LocalizedError {
+    public var errorDescription: String? {
+            return NSLocalizedString(msg, comment: "")
+    }
 }

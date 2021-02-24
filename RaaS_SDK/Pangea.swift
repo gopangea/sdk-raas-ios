@@ -47,11 +47,52 @@ public class Pangea {
         RiskifiedBeacon.logSensitiveDeviceInfo()
     }
     
-    public func createToken(cardInfo: CardInformation, completion: @escaping QueryResult) {
-        TokenService(environment: environment, debugInfo:debugInfo).createToken(cardInfo: cardInfo, completion: completion)
+    public func createToken(cardInfo: CardInformation, completion: @escaping QueryResult<TokenResponse>) {
+        let completionAxiliary:QueryData = {data,error in
+            if let error = error {
+                let errorMessage = "DataTask error: " + error.localizedDescription + "\n"
+                completion(nil,errorMessage)
+            } else if let data = data{
+                let respondMessage = String(decoding: data, as: UTF8.self)
+                let tokenResponse = TokenResponse(token:respondMessage)
+                if (self.debugInfo) {
+                    print(tokenResponse.token)
+                }
+                completion(tokenResponse,nil)
+            }
+        }
+        TokenService(environment: environment, debugInfo:debugInfo).createToken(cardInfo: cardInfo, completion: completionAxiliary)
     }
     
     
+    
+    public func getClientData(completion: @escaping QueryResult<String>) {
+        let completionAxiliary:QueryData = {data,error in
+            if let error = error {
+                let errorMessage = "DataTask error: " + error.localizedDescription + "\n"
+                completion(nil,errorMessage)
+            } else if let data = data{
+                do {
+                    var json = try JSONSerialization.jsonObject(with: data, options:.mutableContainers) as? [String : Any]
+                    json?.merge(["clientSessionId":self.getSessionId()]) {(current,_) in current}
+                    if let jsonString = jsonToString(json: json as Any, isDebug: self.debugInfo){
+                        let trimmedJsonString = self.getEncodedInfoUser(jsonUserInfo: jsonString)
+                        completion(trimmedJsonString, nil)
+                    }else{
+                        completion(nil, "error when covert json response to string , JSON =  \(String(describing: json?.description))")
+                    }
+                } catch let error {
+                    completion(nil, error.localizedDescription)
+                }
+            }
+        }
+        TokenService(environment: environment, debugInfo:debugInfo).fetchClientInfo(completion: completionAxiliary)
+    }
+    
+    private func getEncodedInfoUser(jsonUserInfo: String) -> String?{
+        let trimmedJsonString = jsonUserInfo.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
+        return trimmedJsonString.base64Encoded()
+    }
     
 }
 

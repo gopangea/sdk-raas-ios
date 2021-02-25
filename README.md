@@ -71,7 +71,7 @@ Pangea.sharedInstance.logSensitiveDeviceInfo();
 Pangea RaaS iOS sdk must also be used for generating a temporary token representing a sender’s funding card. Pangea retrieves the token by first encrypting the card data using your public key then sends it to Pangea’s server. You will send the temporary token to your server and finally over to the Pangea RaaS API to create a funding card. Pangea uses the temporary token to generate a permanent token with our card payments provider. The card number and cvv is never stored anywhere in Pangea. You will use the same permanent token for each transfer made with that card. The temporary token is valid for 24 hours. Upon successful generation of the temporary token, you can safely send it to your server. Then to create the funding method in the RaaS API, provide the token along with the other required fields: 
 
 ```
-Pangea.sharedInstance.createToken(cardInfo: CardInformation, completion: @escaping QueryResult) 
+Pangea.sharedInstance.createToken(cardInfo: CardInformation, completion: @escaping QueryResult<TokenResponse>) 
 ```
 **The structure of Card information is:**
 
@@ -122,9 +122,14 @@ TokenResponse is just a wrapper for a String
 
 **Client Session Data**
 
-From the version 1.0.4 we introduced a new method to get a base64 encoded string which the RaaS partner will store in their database instead of the clientSessionId. This encoded string is a JSON object containing some platform RaaS identifiers and the client session id provided by your implementation.
+From version 1.0.4 we introduced a new method to get a base64 encoded string which the RaaS partner will store in their database instead of the clientSessionId. This encoded string is a JSON object containing some platform RaaS identifiers and the client session id provided by your implementation.
+
+```
+Pangea.sharedInstance.getClientData(completion: @escaping QueryResult<String>) 
+```
 
 This id is the same that the sessionID, if you already provided one is not necessary to provide another before calling this method, (when you create your pangea instance you pass this ID as the parameter pangeaSessionID)
+
 
 You can use something similar to this to retrive your encoded client session data:
 

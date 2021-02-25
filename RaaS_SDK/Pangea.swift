@@ -61,7 +61,7 @@ public class Pangea {
                 completion(tokenResponse,nil)
             }
         }
-        TokenService(environment: environment, debugInfo:debugInfo).createToken(cardInfo: cardInfo, completion: completionAxiliary)
+        RaaSService(environment: environment, debugInfo:debugInfo).createToken(cardInfo: cardInfo, completion: completionAxiliary)
     }
     
     
@@ -86,7 +86,7 @@ public class Pangea {
                 }
             }
         }
-        TokenService(environment: environment, debugInfo:debugInfo).fetchClientInfo(completion: completionAxiliary)
+        RaaSService(environment: environment, debugInfo:debugInfo).fetchClientInfo(completion: completionAxiliary)
     }
     
     private func getEncodedInfoUser(jsonUserInfo: String) -> String?{

@@ -10,7 +10,7 @@
 		AE3A195C251A723A0061EF2F /* RaaS_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3A195A251A723A0061EF2F /* RaaS_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE3A1963251A75870061EF2F /* RSAUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A1962251A75870061EF2F /* RSAUtil.swift */; };
 		AE3A1967251A75AF0061EF2F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A1964251A75AF0061EF2F /* Models.swift */; };
-		AE3A1968251A75AF0061EF2F /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A1965251A75AF0061EF2F /* TokenService.swift */; };
+		AE3A1968251A75AF0061EF2F /* RaaSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A1965251A75AF0061EF2F /* RaaSService.swift */; };
 		AE3A1969251A75AF0061EF2F /* CardUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A1966251A75AF0061EF2F /* CardUtils.swift */; };
 		AE3A197C251AA4F70061EF2F /* libriskifiedbeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3A197A251AA4F70061EF2F /* libriskifiedbeacon.a */; };
 		AE3A197D251AA4F70061EF2F /* RiskifiedBeacon.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3A197B251AA4F70061EF2F /* RiskifiedBeacon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,7 +23,7 @@
 		AE3A195B251A723A0061EF2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE3A1962251A75870061EF2F /* RSAUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAUtil.swift; sourceTree = "<group>"; };
 		AE3A1964251A75AF0061EF2F /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		AE3A1965251A75AF0061EF2F /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		AE3A1965251A75AF0061EF2F /* RaaSService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaaSService.swift; sourceTree = "<group>"; };
 		AE3A1966251A75AF0061EF2F /* CardUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardUtils.swift; sourceTree = "<group>"; };
 		AE3A197A251AA4F70061EF2F /* libriskifiedbeacon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libriskifiedbeacon.a; sourceTree = "<group>"; };
 		AE3A197B251AA4F70061EF2F /* RiskifiedBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiskifiedBeacon.h; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				AE3A1962251A75870061EF2F /* RSAUtil.swift */,
 				AE3A1966251A75AF0061EF2F /* CardUtils.swift */,
 				AE3A1964251A75AF0061EF2F /* Models.swift */,
-				AE3A1965251A75AF0061EF2F /* TokenService.swift */,
+				AE3A1965251A75AF0061EF2F /* RaaSService.swift */,
 				AE3A195A251A723A0061EF2F /* RaaS_SDK.h */,
 				AE3A195B251A723A0061EF2F /* Info.plist */,
 				AE3A197A251AA4F70061EF2F /* libriskifiedbeacon.a */,
@@ -158,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE3A197F251AA5FC0061EF2F /* Pangea.swift in Sources */,
-				AE3A1968251A75AF0061EF2F /* TokenService.swift in Sources */,
+				AE3A1968251A75AF0061EF2F /* RaaSService.swift in Sources */,
 				AE3A1969251A75AF0061EF2F /* CardUtils.swift in Sources */,
 				AE3A1963251A75870061EF2F /* RSAUtil.swift in Sources */,
 				AE3A1967251A75AF0061EF2F /* Models.swift in Sources */,

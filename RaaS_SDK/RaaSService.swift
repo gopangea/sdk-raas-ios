@@ -12,11 +12,11 @@ import Foundation
 import Foundation
 
 
-//MARK: - TokenService
+//MARK: - RasSService
 
 
 // Runs query data task only
-internal class TokenService {
+internal class RaaSService {
     private let environment :Environment
     private var debugInfo:Bool
     public init(environment: Environment, debugInfo:Bool){
@@ -93,8 +93,9 @@ internal class TokenService {
                 print("response:  \(String(describing: response))")
                 if let data = data{
                     print("Body/data: \(String(decoding: data , as: UTF8.self))")
+                }else{
+                    print("error: \(String(describing: error))")
                 }
-                print("error: \(String(describing: error))")
             }
             if let error = error {
                 DispatchQueue.main.async {
@@ -144,7 +145,7 @@ internal class TokenService {
     }
     
     private func getApi(environment: Environment) ->String {
-        var api = "noUrlFound"
+        var api = "environmentNotFound"
         switch environment {
         case .PRODUCTION:
             api = "https://api.pangea-raas.com/raas/"

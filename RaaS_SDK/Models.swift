@@ -52,11 +52,11 @@ public enum Environment: String {
 }
 
 internal func getVersion()->String{
-    return "1.0.3"
+    return "1.0.4"
 }
 
 internal func getBuild()->String{
-    return "5"
+    return "6"
 }
 
 internal struct MyError: Error {

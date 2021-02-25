@@ -1,7 +1,7 @@
 # SDK-RaaS-iOS
 
 **The following guide explains how to install and implement Pangea RaaS' Mobile SDK into your application environment.** 
-- Version number: 1.0.3
+- Version number: 1.0.4
 
 ### Introduction
 
@@ -97,20 +97,51 @@ struct CardInformation {
   
 You’ll have a different public key for both sandbox and production. The partnerIdentifier will be the same in both environments and will be assigned to you.
 
-**QueryResult closure**
+
 
 This closure will let you retrieve the token from pagea when the service call is completed, it has two parameters
 ```
-typealias QueryResult = (TokenResponse?, String?) -> Void
+typealias QueryResult<T> = (T?, String?) -> Void
 ```
-TokenResponse is just a wrapper for a String
 
 You can use something similar to this:
   ```
 Pangea.sharedInstance.createToken(cardInfo: card, completion: {tokenResponse,error in
-             guard let token = tokenResponse else { //invalid token }
-        })
+                     if let token:TokenResponse = tokenResponse
+                     {
+                        //do something with your Token
+                        print(token.token)
+                     }
+                     else {
+                        // failed operation
+                        print(error)
+                     }
+                     })
 ```
+TokenResponse is just a wrapper for a String
+
+**Client Session Data**
+
+From the version 1.0.4 we introduced a new method to get a base64 encoded string which the RaaS partner will store in their database instead of the clientSessionId. This encoded string is a JSON object containing some platform RaaS identifiers and the client session id provided by your implementation.
+
+This id is the same that the sessionID, if you already provided one is not necessary to provide another before calling this method, (when you create your pangea instance you pass this ID as the parameter pangeaSessionID)
+
+You can use something similar to this to retrive your encoded client session data:
+
+```
+        Pangea.sharedInstance.getClientData(completion: {clientInfo,error in
+                         if let clientInfo:String = clientInfo
+                         {
+                            //do something with your data encoded string 
+                            print(clientInfo)
+                         }
+                         else {
+                            // failed operation
+                            print(error)
+                         }
+                         })
+```
+
 ### [Changelog](https://github.com/gopangea/sdk-raas-ios/blob/master/CHANGELOG.md)
 
 ### FAQs

@@ -3,6 +3,8 @@
 **The following guide explains how to install and implement Pangea RaaS' Mobile SDK into your application environment.** 
 - Version number: 1.0.4
 
+## [Changelog](https://github.com/gopangea/sdk-raas-ios/blob/master/CHANGELOG.md)
+
 ### Introduction
 
 
@@ -147,7 +149,7 @@ You can use something similar to this to retrive your encoded client session dat
                          })
 ```
 
-### [Changelog](https://github.com/gopangea/sdk-raas-ios/blob/master/CHANGELOG.md)
+
 
 ### FAQs
 

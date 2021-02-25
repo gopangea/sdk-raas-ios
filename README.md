@@ -99,7 +99,7 @@ struct CardInformation {
   
 You’ll have a different public key for both sandbox and production. The partnerIdentifier will be the same in both environments and will be assigned to you.
 
-
+**QueryResult Closure**
 
 This closure will let you retrieve the token from pagea when the service call is completed, it has two parameters
 ```
